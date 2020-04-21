@@ -60,3 +60,22 @@ pipeline {
 }
 ```
 ![multiple steps](../images/s13_2.PNG)
+
+## 136. Retry
+From this [**session**](https://www.udemy.com/course/jenkins-from-zero-to-hero/learn/lecture/13624080#overview), we're going to learn about retrace in pipeline. ([Timeouts, retries and more](https://jenkins.io/doc/pipeline/tour/running-multiple-steps/#timeouts-retries-and-more))
+* **retry**
+```groovy
+pipeline {
+    agent any
+    stages {
+        stage('Timeout') {
+            steps {
+                retry(3) {
+                    sh 'I am not going to work :c'
+                }
+            }
+        }
+    }
+}
+```
+![retry](../images/s13_3.PNG)
