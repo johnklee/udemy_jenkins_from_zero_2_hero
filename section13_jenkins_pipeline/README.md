@@ -79,3 +79,26 @@ pipeline {
 }
 ```
 ![retry](../images/s13_3.PNG)
+
+## 137. Timeouts
+From this [**session**](https://www.udemy.com/course/jenkins-from-zero-to-hero/learn/lecture/13624084#overview), we're going to learn about time outs in the previous video.
+* **timeout**
+```groovy
+pipeline {
+    agent any
+    stages {
+        stage('Deploy') {
+            steps {
+                retry(3) {
+                    sh 'echo hello'
+                }
+
+                timeout(time: 3, unit: 'SECONDS') {
+                    sh 'sleep 5'
+                }
+            }
+        }
+    }
+}
+```
+![aborted](../images/s13_4.PNG)
