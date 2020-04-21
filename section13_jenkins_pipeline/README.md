@@ -147,3 +147,35 @@ pipeline {
 }
 ```
 ![output of script](../images/s13_6.PNG)
+
+## 140. Post actions
+From this [**session**](https://www.udemy.com/course/jenkins-from-zero-to-hero/learn/lecture/13624090#overview), we're going to learn about post actions in Jenkins files.
+
+* **post-actions**
+```groovy
+pipeline {
+    agent any
+    stages {
+        stage('Test') {
+            steps {
+                sh 'echo "Fail!"; exit 1'
+            }
+        }
+    }
+    post {
+        always {
+            echo 'I will always get executed :D'
+        }
+        success {
+            echo 'I will only get executed if this success'
+        }
+        failure {
+            echo 'I will only get executed if this fails'
+        }
+        unstable {
+            echo 'I will only get executed if this is unstable'
+        }
+    }
+}
+```
+![failure and execute post action](../images/s13_7.PNG)
