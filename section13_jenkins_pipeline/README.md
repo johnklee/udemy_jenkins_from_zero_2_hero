@@ -102,3 +102,48 @@ pipeline {
 }
 ```
 ![aborted](../images/s13_4.PNG)
+
+## 138. Environment variables
+From this [**session**](https://www.udemy.com/course/jenkins-from-zero-to-hero/learn/lecture/13624086#overview), we're going to learn about in Vermont for a vote in our Jenkins file.
+
+* **env**
+```groovy
+pipeline {
+    agent any
+
+    environment {
+        NAME = 'ricardo'
+        LASTNAME = 'gonzalez'
+    }
+
+    stages {
+        stage('Build') {
+            steps {
+                sh 'echo $NAME $LASTNAME'
+            }
+        }
+    }
+}
+```
+## 139. Credentials
+From this [**session**](https://www.udemy.com/course/jenkins-from-zero-to-hero/learn/lecture/13624088#overview), we're going to learn about credentials in pipelines. Before working on below pipeline script, you have to create a testing credential as `TEST` (Jenkins > Credentials):
+![testing credential](../images/s13_5.PNG)
+
+* **creds**
+```groovy
+pipeline {
+    agent any
+
+    environment {
+        secret = credentials('TEST')
+    }
+    stages {
+        stage('Example stage 1') {
+            steps {
+                sh 'echo $secret'
+            }
+        }
+    }
+}
+```
+![output of script](../images/s13_6.PNG)
