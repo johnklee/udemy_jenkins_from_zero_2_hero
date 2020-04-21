@@ -149,7 +149,7 @@ pipeline {
 ![output of script](../images/s13_6.PNG)
 
 ## 140. Post actions
-From this [**session**](https://www.udemy.com/course/jenkins-from-zero-to-hero/learn/lecture/13624090#overview), we're going to learn about post actions in Jenkins files.
+From this [**session**](https://www.udemy.com/course/jenkins-from-zero-to-hero/learn/lecture/13624090#overview), we're going to learn about post actions in Jenkins files. ([Cleaning up and notifications](https://jenkins.io/doc/pipeline/tour/post/))
 
 * **post-actions**
 ```groovy
