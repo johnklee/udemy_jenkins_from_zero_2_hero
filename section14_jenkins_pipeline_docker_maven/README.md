@@ -51,4 +51,14 @@ docker run --rm  -v  $WORKSPACE/java-app:/app -v /root/.m2/:/root/.m2/ -w /app m
 ```
 
 ## 147. Build: Create a Dockerfile and build an image with your Jar
-In this [**session**](https://www.udemy.com/course/jenkins-from-zero-to-hero/learn/lecture/13713972#overview), we're going to learn how to create a darker image using that yard that we are generating using Maven.
+In this [**session**](https://www.udemy.com/course/jenkins-from-zero-to-hero/learn/lecture/13713972#overview), we're going to learn how to create a darker image using that yard that we are generating using Maven. 
+```console
+# cd jenkins/build/
+# docker build -f Dockerfile-Java -t test-app .
+# docker images | grep test-app
+# docker run test-app
+Hello from Pipeline!
+```
+
+## 148. Build: Create a Docker Compose file to automate the Image build process
+In this [**session**](https://www.udemy.com/course/jenkins-from-zero-to-hero/learn/lecture/13713976#overview), we're going to learn how to create a doctor composed file to automatically veal our image.
