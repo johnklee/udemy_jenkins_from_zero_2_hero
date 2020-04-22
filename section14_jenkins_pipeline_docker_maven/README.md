@@ -12,30 +12,43 @@ In this [**session**](https://www.udemy.com/course/jenkins-from-zero-to-hero/lea
 
 ## 145. Build: Create a Jar for your Maven App using Docker
 In this [**session**](https://www.udemy.com/course/jenkins-from-zero-to-hero/learn/lecture/13713958#overview), we're going to learn how to create a jar how to build a maybe an application using Docker. Firstly, let's pull the necessary image:
-```bash
+```console
 # docker pull maven:3-alpine
 ```
 Unzip the resource file into current working dir:
-```bash
+```console
 # unzip resources/section14.zip -d ./
 # cd jenkins-pipeline/pipeline/
 # ls
 Dockerfile  java-app  jenkins  Jenkinsfile
 ```
 Then we can start the container to build target app:
-```bash
+```console
 # docker run --rm -it -v $PWD/java-app/:/app -v /root/.m2/:/root/.m2/ -w /app maven:3-alpine sh
 /app # ls
 README.md  jenkins    pom.xml    src        target
 /app # mvn package
 ```
 Now we are inside container and build the target app. Or you can execute below command to build directly:
-```bash
+```console
 //  -B,--batch-mode                        Run in non-interactive (batch) mode (disables output color)
 # docker run --rm -it -v $PWD/java-app/:/app -v /root/.m2/:/root/.m2/ -w /app maven:3-alpine mvn -B -DskipTests clean package
 ```
 You can observe the line `Building jar: /app/target/my-app-1.0-SNAPSHOT.jar` which disclose the location of target jar file.
 
 ## 146. Build: Write abash script to automate the Jar creation
-In this [**session**](https://www.udemy.com/course/jenkins-from-zero-to-hero/learn/lecture/13713968#overview) we're going to automate the process of creating the jar using Ducker because probably.
+In this [**session**](https://www.udemy.com/course/jenkins-from-zero-to-hero/learn/lecture/13713968#overview), we're going to automate the process of creating the jar using Ducker because probably. Check `mvn.sh`:
+```bash
+#!/bin/bash
 
+echo "***************************"
+echo "** Building jar ***********"
+echo "***************************"
+
+WORKSPACE=$PWD
+
+docker run --rm  -v  $WORKSPACE/java-app:/app -v /root/.m2/:/root/.m2/ -w /app maven:3-alpine "$@"
+```
+
+## 147. Build: Create a Dockerfile and build an image with your Jar
+In this [**session**](https://www.udemy.com/course/jenkins-from-zero-to-hero/learn/lecture/13713972#overview), we're going to learn how to create a darker image using that yard that we are generating using Maven.
