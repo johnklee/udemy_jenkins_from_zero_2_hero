@@ -61,4 +61,33 @@ Hello from Pipeline!
 ```
 
 ## 148. Build: Create a Docker Compose file to automate the Image build process
-In this [**session**](https://www.udemy.com/course/jenkins-from-zero-to-hero/learn/lecture/13713976#overview), we're going to learn how to create a doctor composed file to automatically veal our image.
+In this [**session**](https://www.udemy.com/course/jenkins-from-zero-to-hero/learn/lecture/13713976#overview), we're going to learn how to create a doctor composed file to automatically build our image.
+* **docker-compose-build.yml**
+```yaml
+version: '3'
+services:
+  app:
+    image: "maven-project:$BUILD_TAG"
+    build:
+      context: .
+      dockerfile: Dockerfile-Java
+```
+Then you can build the image by command:
+```console
+#  export BUILD_TAG=1
+#  docker-compose -f docker-compose-build.yml build
+Building app
+Step 1/4 : FROM openjdk:8-jre-alpine
+ ---> f7a292bbb70c
+Step 2/4 : RUN mkdir /app
+ ---> Using cache
+ ---> bc769d2de05e
+Step 3/4 : COPY *.jar /app/app.jar
+ ---> b2646c624e03
+Step 4/4 : CMD java -jar /app/app.jar
+ ---> Running in 88c227f9fb4d
+Removing intermediate container 88c227f9fb4d
+ ---> 5b81257a1697
+Successfully built 5b81257a1697
+Successfully tagged maven-project:1
+```
