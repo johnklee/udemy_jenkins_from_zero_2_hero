@@ -1,0 +1,42 @@
+version: '3'
+services:
+    #jenkins:
+    #    container_name: jenkins
+    #    image: jenkins/jenkins:2.218-centos
+    #    ports:
+    #        - "80:8080"
+    #    volumes:
+    #        - $PWD/jenkins_home:/var/jenkins_home 
+    #    networks:
+    #        - net
+    jenkins:
+        container_name: jenkins_with_maven
+        build:
+            context: jenkins_ansible
+        image: jenkins/jenkins_with_ansible
+        ports:
+            - "80:8080"
+        volumes:
+            - $PWD/jenkins_home:/var/jenkins_home
+            - /var/run/docker.sock:/var/run/docker.sock
+        networks:
+            - net  
+    remote_host:
+        container_name: remote-host
+        image: remotehost/centos8
+        build:
+            context: centos8
+        networks:
+            - net
+    db_host:
+        container_name: db
+        image: mysql:5.7
+        environment:
+            - "MYSQL_ROOT_PASSWORD=dbpassword"
+        volumes:
+            - "$PWD/db_data:/var/lib/mysql"
+        networks:
+            - net
+networks:
+    net:
+
