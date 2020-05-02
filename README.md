@@ -139,8 +139,17 @@ This [**section**](https://www.udemy.com/course/jenkins-from-zero-to-hero/learn/
 ## 129. Continuous Deployment
 This [**section**](https://www.udemy.com/course/jenkins-from-zero-to-hero/learn/lecture/13624044#overview)
 
+# Jenkins Pipeline - Jenkinsfile
+For the resources of this section, please refer to [section13.zip](resources/section13.zip).
+
+## 131. Introduction to Pipeline
+This [**section**](https://www.udemy.com/course/jenkins-from-zero-to-hero/learn/lecture/13624054#overview)
+
+## 132. Introduction to Jenkinsfile
+This [**section**](https://www.udemy.com/course/jenkins-from-zero-to-hero/learn/lecture/13624060#overview)
 
 
 # Supplement
 * [How to Configure Email Notification in Jenkins?](https://www.360logica.com/blog/email-notification-in-jenkins/)
-* [Triggering a Jenkins build on push using GitHub webhooks](https://medium.com/faun/triggering-jenkins-build-on-push-using-github-webhooks-52d4361542d4) 
+* [Triggering a Jenkins build on push using GitHub webhooks](https://medium.com/faun/triggering-jenkins-build-on-push-using-github-webhooks-52d4361542d4)
+* [How to Install Apache Maven on CentOS 7](https://linuxize.com/post/how-to-install-apache-maven-on-centos-7/) 

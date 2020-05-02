@@ -221,3 +221,47 @@ In this [**session**](https://www.udemy.com/course/jenkins-from-zero-to-hero/lea
 ```
 Then you can check your docker hub account:
 ![docker hub image](../images/s15_1.PNG)
+
+## 149. Push: Write a bash script to automate the push process
+In this [**session**](https://www.udemy.com/course/jenkins-from-zero-to-hero/learn/lecture/13714078#overview) we're going to automate the process of pushing images to our registry. Firstly, let's modify `jenkins/build/docker-compose-build.yml` to have the correct image name according to the repository you created in docker hub:
+* **jenkins/build/docker-compose-build.yml**
+```yaml
+version: '3'
+services:
+  app:
+    image: "johnklee/jenkins_demo:$BUILD_TAG"
+    build:
+      context: .
+      dockerfile: Dockerfile-Java
+```
+
+Then it is time to create bash file to push image to repository:
+* **jenkins/push/push.sh**
+```bash
+#!/bin/bash
+
+echo "********************"
+echo "** Pushing image ***"
+echo "********************"
+
+IMAGE="jenkins_demo"
+
+echo "** Logging in ***"
+echo $PASS | docker login -u johnklee --password-stdin
+# echo "*** Tagging image ***"
+# docker tag $IMAGE:$BUILD_TAG johnklee/$IMAGE:$BUILD_TAG
+echo "*** Pushing image ***"
+docker push johnklee/$IMAGE:$BUILD_TAG
+```
+## 150. Push: Add your push script to Jenkinsfile
+In this [**session**](https://www.udemy.com/course/jenkins-from-zero-to-hero/learn/lecture/13714086#overview) we're going to add these is crib that we just created to our Jenkins file.
+* **Jenkinsfile**
+```groovy
+...
+        stage('Push') {
+            steps {
+                sh './jenkins/push/push.sh'
+            }
+        }
+...
+```
