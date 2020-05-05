@@ -265,3 +265,49 @@ In this [**session**](https://www.udemy.com/course/jenkins-from-zero-to-hero/lea
         }
 ...
 ```
+## 151. Deploy: Transfer some variables to the remote machine
+In this [**session**](https://www.udemy.com/course/jenkins-from-zero-to-hero/learn/lecture/13714110#overview) we're going to start taking a look at the deployment process.
+
+## 152. Deploy: Deploy your application on the remote machine manually
+In this [**session**](https://www.udemy.com/course/jenkins-from-zero-to-hero/learn/lecture/13714116#overview) we're going to learn how to deploy a container in that remote machine manually using all the process that we have been creating.
+
+## 153. Deploy: Transfer the deployment script to the remote machine
+In this [**session**](https://www.udemy.com/course/jenkins-from-zero-to-hero/learn/lecture/13714126#overview) we're going to create a script to automate everything that we did previously.
+
+## 154. Deploy: Execute the deploy script in the remote machine
+In this [**session**](https://www.udemy.com/course/jenkins-from-zero-to-hero/learn/lecture/13714132#overview) we're going to learn how to execute the script that would just create it in that remote machine.
+
+## 155. Deploy: Add your deploy script to Jenkinsfile
+In the previous video we created this script and we executed it to deploy the application that remote machine. ([more](https://www.udemy.com/course/jenkins-from-zero-to-hero/learn/lecture/13714138#overview))
+* **Jenkinsfile**
+```groovy
+...
+        stage('Deploy') {
+            steps {
+                sh './jenkins/deploy/deploy.sh'
+            }
+        }
+...        
+```
+## 156. Create a Git Repository to store your scripts and the code for the app
+In this [**session**](https://www.udemy.com/course/jenkins-from-zero-to-hero/learn/lecture/13714152#overview) we're going to create a great repository in our Get server to store the code that we have just created.
+
+## 157. Create the Jenkins Pipeline. Finally!
+In this [**session**](https://www.udemy.com/course/jenkins-from-zero-to-hero/learn/lecture/13714158#overview) we're going to create the pipeline for this project.
+
+## 158. Modify the path when mounting Docker volumes
+In this [**session**](https://www.udemy.com/course/jenkins-from-zero-to-hero/learn/lecture/13714170#overview) we're going to do a couple of modification to our build and test scripts.
+
+## 159. Create the Registry Password in Jenkins
+In this [**session**](https://www.udemy.com/course/jenkins-from-zero-to-hero/learn/lecture/13714178#overview) we're going to create the password for that registry. After create crendential in Jenkins, modify `Jenkinsfile` to expose the password of registry to the environment:
+```groovy
+...
+    environment {
+        PASS = credentials('registry-pass')
+    }
+...
+```
+
+## 160. Add the private ssh key to the Jenkins container
+In this [**session**](https://www.udemy.com/course/jenkins-from-zero-to-hero/learn/lecture/13714182#overview) we're going to put the key file that is needed to deploy the application in the Jenkins container.
+
